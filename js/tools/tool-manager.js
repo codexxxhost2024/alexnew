@@ -2,6 +2,18 @@ import { Logger } from '../utils/logger.js';
 import { ApplicationError, ErrorCodes } from '../utils/error-boundary.js';
 import { GoogleSearchTool } from './google-search.js';
 import { WeatherTool } from './weather-tool.js';
+import { DocumentSaverTool } from './document-saver.js';
+import { EmailSenderTool } from './email-sender.js';
+import { CalculatorTool } from './calculator.js';
+import { UnitConverterTool } from './unit-converter.js';
+import { TimeConverterTool } from './time-converter.js';
+import { CurrencyConverterTool } from './currency-converter.js';
+import { DateCalculatorTool } from './date-calculator.js';
+import { TextSummarizerTool } from './text-summarizer.js';
+import { TextTranslatorTool } from './text-translator.js';
+import { RandomGeneratorTool } from './random-generator.js';
+import { PasswordGeneratorTool } from './password-generator.js';
+import { ListGeneratorTool } from './list-generator.js';
 
 /**
  * Manages the registration and execution of tools.
@@ -22,11 +34,23 @@ export class ToolManager {
     registerDefaultTools() {
         this.registerTool('googleSearch', new GoogleSearchTool());
         this.registerTool('weather', new WeatherTool());
+        this.registerTool('documentSaver', new DocumentSaverTool());
+        this.registerTool('emailSender', new EmailSenderTool());
+        this.registerTool('calculator', new CalculatorTool());
+        this.registerTool('unitConverter', new UnitConverterTool());
+        this.registerTool('timeConverter', new TimeConverterTool());
+        this.registerTool('currencyConverter', new CurrencyConverterTool());
+        this.registerTool('dateCalculator', new DateCalculatorTool());
+        this.registerTool('textSummarizer', new TextSummarizerTool());
+        this.registerTool('textTranslator', new TextTranslatorTool());
+        this.registerTool('randomGenerator', new RandomGeneratorTool());
+        this.registerTool('passwordGenerator', new PasswordGeneratorTool());
+        this.registerTool('listGenerator', new ListGeneratorTool());
     }
 
     /**
      * Registers a new tool.
-     *
+     * 
      * @param {string} name - The name of the tool.
      * @param {Object} toolInstance - The tool instance. Must have a `getDeclaration` method.
      * @throws {ApplicationError} Throws an error if a tool with the same name is already registered.
@@ -50,7 +74,7 @@ export class ToolManager {
      */
     getToolDeclarations() {
         const allDeclarations = [];
-        
+
         this.tools.forEach((tool, name) => {
             if (tool.getDeclaration) {
                 if (name === 'weather') {
@@ -113,4 +137,4 @@ export class ToolManager {
             };
         }
     }
-} 
+}
